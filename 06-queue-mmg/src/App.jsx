@@ -1,109 +1,47 @@
 import { useState } from "react";
-import { FaUserPlus } from "react-icons/fa6";
-import { IoPersonRemoveSharp } from "react-icons/io5";
+import QueueForm from "./components/QueueForm";
+import QueueDisplay from "./components/QueueDisplay";
+import QueueHeader from "./QueueHeader";
 
 function App() {
   const [queue, setQueue] = useState([]);
-
-  const addToQueue = () => {};
-  const updateStatus = () => {};
-  const removeFromQueue = () => {};
+  const [services, setServices] = useState([
+    "Consultation",
+    "Payment",
+    "Support",
+  ]);
+  const addToQueue = (customer) => {
+    setQueue([...queue, { ...customer, id: Date.now(), status: "waiting" }]);
+  };
+  const addService = (service) => {
+    if (!service || !service.trim()) return;
+    setServices((prev) => (prev.includes(service) ? prev : [...prev, service]));
+  };
+  const updateStatus = (id, newStatus) => {
+    setQueue(
+      queue.map((customer) =>
+        customer.id === id ? { ...customer, status: newStatus } : customer
+      )
+    );
+  };
+  const removeFromQueue = (id) => {
+    setQueue(queue.filter((customer) => customer.id !== id));
+  };
   return (
     <div>
-      <header>
-        <h1 style={{ textAlign: "center" }}>Queue Management Application</h1>
-        <p style={{ textAlign: "center", marginBottom: "50px" }}>
-          Manage your customers efficiently
-        </p>
-      </header>
-
+      <QueueHeader></QueueHeader>
       {/* main section */}
       <main className="main">
-        <div className="inputbox">
-          <h2>Add to Queue</h2>
-          <input type="text" name="name" placeholder="Customer name" />
-          <select id="fruits" name="fruits">
-            <option value="apple">Apple</option>
-            <option value="banana">Banana</option>
-            <option value="orange">Orange</option>
-            <option value="grape">Grape</option>
-          </select>
-          <button class="add-customer">
-            <FaUserPlus />
-            <span>Add customer</span>
-          </button>
-        </div>
-        <div className="displaybox">
-          <h2>Current Queue</h2>
-          <div class="content-area">
-            {" "}
-            <div class="content">
-              <div className="content-left">
-                <h3>shailesh yadav</h3>
-                <p>Service: payment</p>
-                <p class="status-complete">completed</p>
-              </div>
-              <div className="content-right">
-                <button class="btn">serve</button>
-                <span>
-                  <IoPersonRemoveSharp />
-                </span>
-              </div>
-            </div>
-            <div class="content">
-              <div className="content-left">
-                <h3>shailesh yadav</h3>
-                <p>Service: payment</p>
-                <p class="status-complete">completed</p>
-              </div>
-              <div className="content-right">
-                <button class="btn">serve</button>
-                <span>
-                  <IoPersonRemoveSharp />
-                </span>
-              </div>
-            </div>
-            <div class="content">
-              <div className="content-left">
-                <h3>shailesh yadav</h3>
-                <p>Service: payment</p>
-                <p class="status-complete">completed</p>
-              </div>
-              <div className="content-right">
-                <button class="btn">serve</button>
-                <span>
-                  <IoPersonRemoveSharp />
-                </span>
-              </div>
-            </div>
-            <div class="content">
-              <div className="content-left">
-                <h3>shailesh yadav</h3>
-                <p>Service: payment</p>
-                <p class="status-complete">completed</p>
-              </div>
-              <div className="content-right">
-                <button class="btn">serve</button>
-                <span>
-                  <IoPersonRemoveSharp />
-                </span>
-              </div>
-            </div>
-            <div class="content">
-              <div className="content-left">
-                <h3>shailesh yadav</h3>
-                <p>Service: payment</p>
-                <p class="status-complete">completed</p>
-              </div>
-              <div className="content-right">
-                <button class="btn">serve</button>
-                <span>
-                  <IoPersonRemoveSharp />
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <QueueForm
+          onAdd={addToQueue}
+          services={services}
+          onAddService={addService}
+        ></QueueForm>
+        <QueueDisplay
+          queue={queue}
+          onUpdateStatus={updateStatus}
+          onRemove={removeFromQueue}
+        ></QueueDisplay>
       </main>
     </div>
   );
