@@ -110,11 +110,16 @@ function BasicProps() {
           />
         </div>
       </div>
-      <div className="space-y-4 rounded-lg bg-green-100 p-3">
-        <p>
+      <div className="space-y-4 rounded-lg bg-green-100 p-3 flex justify-between align-center">
+        <p className="my-auto">
           Click Count:{" "}
           <span className="text-blue-500 font-bold">{clickCount}</span>
         </p>
+        <Button
+          text="Resset Count"
+          color="danger"
+          onClick={() => setClickCount(0)}
+        />
       </div>
     </section>
   );
