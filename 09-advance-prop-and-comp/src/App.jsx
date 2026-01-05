@@ -3,6 +3,7 @@ import ChildernProps from "./components/ChildernProps.jsx";
 import ComplexProps from "./components/ComplexProps.jsx";
 import RefProps from "./components/RefProps.jsx";
 import ThemeToggler from "./components/ThemeToggler.jsx";
+import { ThemeProvider } from "./components/ThemeToggler.jsx";
 
 function Navigation() {
   const sections = [
@@ -75,6 +76,10 @@ function AppContent() {
   );
 }
 function App() {
-  return <AppContent />;
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
 }
 export default App;

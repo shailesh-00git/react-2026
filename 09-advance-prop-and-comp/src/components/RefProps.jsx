@@ -104,6 +104,20 @@ function RefProps() {
             />
             <Button text="Clear first input" color="red" onClick={clearInput} />
           </div>
+          {/* notice div */}
+          <div className="border-l-5 border-amber-600 mt-4 gap-3  bg-orange-100 p-6 rounded-xl">
+            <h2 className="font-medium text-2xl text-gray-800">
+              When to use refs:
+            </h2>
+            <ul className="list-disc px-10 mt-3">
+              <li>Managing focus, text selection and media play back</li>
+              <li>Triggering imperimative animations</li>
+              <li>Intergration with third party DOM libraries</li>
+              <li>
+                Accessing DOM measurements (scroll position, element sizes)
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
