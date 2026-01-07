@@ -8,9 +8,9 @@ import { ThemeProvider } from "./components/ThemeToggler.jsx";
 function Navigation() {
   const sections = [
     { id: "basic", label: "Basic Props", icon: "📦" },
-    { id: "ref", label: "Ref Props", icon: "®️" },
     { id: "childern", label: "Childern Props", icon: "👦" },
     { id: "complex", label: "Complex Props", icon: "😥" },
+    { id: "ref", label: "Ref Props", icon: "®️" },
     { id: "theme", label: "Theme Props", icon: "🌑" },
   ];
 
@@ -53,16 +53,16 @@ function AppContent() {
           <div id="basic" className="scroll-mt-200">
             <BasicProps />
           </div>
-          <div id="chidern" className="scroll-mt-200">
+          <div id="childern" className="scroll-mt-24">
             <ChildernProps />
           </div>
-          <div id="complex" className="scroll-mt-200">
+          <div id="complex" className="scroll-mt-24">
             <ComplexProps />
           </div>
-          <div id="ref" className="scroll-mt-200">
+          <div id="ref" className="scroll-mt-24">
             <RefProps />
           </div>
-          <div id="theme" className="scroll-mt-200">
+          <div id="theme" className="scroll-mt-24">
             <ThemeToggler />
           </div>
         </div>
